@@ -19,16 +19,30 @@ const month = [
   "Nov",
   "Dec",
 ];
+
+let mOrder = 0;
+const inputMonth = new $$("input");
+inputMonth.element.type = "text";
+inputMonth.on("input", (e) => {
+  month.map((val, idx) => {
+    if (val === e.target.value) mOrder = idx;
+  });
+  console.log(mInnerGroup);
+});
+app.add(inputMonth.element);
 const m = new Date().getMonth();
-const months = month.concat(month.slice(0, m)).filter((e, i) => i >= m);
+const months = month
+  .concat(month.slice(0, mOrder))
+  .filter((e, i) => i >= mOrder);
 const monthInner = months.map((val) => [...val][0]);
 const monthCenter = months.map((val) => [...val][1]);
 const monthOuter = months.map((val) => [...val][2]);
 
 const monthInnerLayer = new $$("div");
 monthInnerLayer.class("month-inner-layer");
-monthInner.map((val, idx) => {
-  const inner = new $$("div");
+let inner;
+const mInnerGroup = monthInner.map((val, idx) => {
+  inner = new $$("div");
   inner.class(`inner-${val}`);
   inner.class(`inner`);
   inner.text(val.toLowerCase());
@@ -38,6 +52,7 @@ monthInner.map((val, idx) => {
   }
   inner.transform(positionMonth(75, 12, idx));
   monthInnerLayer.add(inner.element);
+  return inner.element;
 });
 app.add(monthInnerLayer.element);
 
@@ -81,11 +96,6 @@ ringArr.map((val) => {
   deco.class(`deco-${val}`);
   deco.class(`deco`);
   deco.transform(positionRing(141, 6, val));
-  let i = 0;
-  setInterval(() => {
-    deco.transform(positionRing(141, 6, val + i));
-    i++;
-  }, 60000);
   layerRing.add(deco.element);
 });
 app.add(layerRing.element);
@@ -150,59 +160,8 @@ min.class(`high-light-num`);
 min.text(new Date().getMinutes());
 min.transform(positionNum(275, 12, hour % 12));
 layerNums.add(min.element);
-
 app.add(layerNums.element);
 
-let trans = false;
-const transform3D = () => {
-  if (trans) {
-    yearLayer.transform(layer3D(0));
-    monthInnerLayer.transform(layer3D(0));
-    monthCenterLayer.transform(layer3D(0));
-    monthOuterLayer.transform(layer3D(0));
-    layerRing.transform(layer3D(0));
-    layerSecondInner.transform(layer3D(0));
-    layerSecond.transform(layer3D(0));
-    layerWave.transform(layer3D(0));
-    layerNums.transform(layer3D(0));
-    const timer = setTimeout(() => {
-      yearLayer.transform(``);
-      monthInnerLayer.transform(``);
-      monthCenterLayer.transform(``);
-      monthOuterLayer.transform(``);
-      layerRing.transform(``);
-      layerSecondInner.transform(``);
-      layerSecond.transform(``);
-      layerWave.transform(``);
-      layerNums.transform(``);
-      trans = false;
-      clearTimeout(timer);
-    }, 500);
-  } else {
-    yearLayer.transform(layer3D(0));
-    monthInnerLayer.transform(layer3D(0));
-    monthCenterLayer.transform(layer3D(0));
-    monthOuterLayer.transform(layer3D(0));
-    layerRing.transform(layer3D(0));
-    layerSecondInner.transform(layer3D(0));
-    layerSecond.transform(layer3D(0));
-    layerWave.transform(layer3D(0));
-    layerNums.transform(layer3D(0));
-    const timer = setTimeout(() => {
-      yearLayer.transform(layer3D(-80));
-      monthInnerLayer.transform(layer3D(-60));
-      monthCenterLayer.transform(layer3D(-40));
-      monthOuterLayer.transform(layer3D(-20));
-      layerSecondInner.transform(layer3D(30));
-      layerSecond.transform(layer3D(60));
-      layerWave.transform(layer3D(80));
-      layerNums.transform(layer3D(120));
-      trans = true;
-      clearTimeout(timer);
-    }, 500);
-  }
-};
-//layerNums.element.addEventListener("click", transform3D);
 const els = [
   yearLayer,
   monthInnerLayer,
@@ -214,12 +173,12 @@ const els = [
   layerWave,
   layerNums,
 ];
-const va = [-80, -60, -40, -20, 0, 15, 30, 60, 80];
+const va = [-120, -80, -60, -40, 0, 15, 30, 60, 80];
+
 window.addEventListener("mousemove", (e) => {
   let x = e.x - window.innerWidth / 2,
     y = e.y - window.innerHeight / 2;
-  console.log({ x, y });
   els.map((e, i) => {
-    e.transform(layer3D(va[i], x / 30, y / 30));
+    e.transform(layer3D(va[i], x, y));
   });
 });

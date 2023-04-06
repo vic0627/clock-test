@@ -46,13 +46,23 @@ const positionSecond = (radius, divison, order, skew = true) => {
   skew ? (dir = 30) : (dir = -30);
   return `perspective(500px) translateX(${x}px) translateY(${y}px) rotate(${rotate}deg) skewY(${dir}deg)`;
 };
-const dToR = (d) => ((2 * Math.PI) / 360) * d;
-const layer3D = (z, mouseX = 0, mouseY = 0) => {
-  const rX = mouseX;
-  const rY = mouseY;
-  const x = -z * Math.sin(dToR(rX));
-  const y = -z * Math.sin(dToR(rY));
-  return `perspective(500px) rotateY(${rX}deg) rotateX(${rY}deg) translate3d(${x}px, ${y}px, ${z}px)`;
+const dToR = (d) => (Math.PI / 180) * d;
+const layer3D = (r, mouseX = 0, mouseY = 0) => {
+  const rX = mouseX / window.innerWidth * 2;
+  const rY = -(mouseY / window.innerHeight * 2);
+  const theta = dToR(rX * 60);
+  const phi = dToR(rY * 60);
+  const x = r * Math.cos(phi) * Math.sin(theta);
+  const y = () => {
+    const temp = r * Math.sin(phi) * Math.sin(theta);
+    if (rX > 0) {
+      return -temp;
+    } else {
+      return temp;
+    }
+  };
+  const z = r * Math.cos(theta);
+  return `perspective(500px) rotateX(${rY * 60}deg) rotateY(${rX * 60}deg) translate3d(${x}px, ${y()}px, ${z}px)`;
 };
 const positionRing = (radius, divison, order) => {
   const odr = order - 3;
@@ -61,7 +71,7 @@ const positionRing = (radius, divison, order) => {
   const rotate = odr * deg;
   const x = radius * Math.cos(rad * odr);
   const y = radius * Math.sin(rad * odr);
-  return `perspective(1000px) translateX(${x}px) translateY(${y}px) rotate(${rotate}deg)`;
+  return `perspective(500px) translateX(${x}px) translateY(${y}px) rotate(${rotate}deg)`;
 };
 const positionMonth = (radius, divison, order) => {
   const rad = (2 * Math.PI) / divison;
@@ -89,6 +99,9 @@ class $$ {
   }
   transform(trans) {
     this.element.style.transform = trans;
+  }
+  on(event, callback) {
+    this.element.addEventListener(event, callback);
   }
 }
 const delay = (callback, delay) => {

@@ -32,7 +32,7 @@ body{
     left: calc(50% - 60px);
     color: #F56C6C;
     text-shadow: 0 0 30px #fcd3d388;
-    box-shadow: 0 0 20px 0 #fff8 inset;
+    box-shadow: 0 0 20px 0 #79bbff inset;
     border-radius: 50%;
     text-align: center;
     line-height: 3.1;
