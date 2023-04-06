@@ -1,9 +1,9 @@
-const $ = (e) => document.querySelector(e);
+const app = new $$("#app", false);
 
-const yearLayer = document.createElement("div");
-yearLayer.classList.add("layer-Year");
-yearLayer.innerText = new Date().getFullYear();
-$("#app").appendChild(yearLayer);
+const yearLayer = new $$("div");
+yearLayer.class("layer-Year");
+yearLayer.text(new Date().getFullYear());
+app.add(yearLayer.element);
 
 const month = [
   "Jan",
@@ -25,181 +25,201 @@ const monthInner = months.map((val) => [...val][0]);
 const monthCenter = months.map((val) => [...val][1]);
 const monthOuter = months.map((val) => [...val][2]);
 
-const monthInnerLayer = document.createElement("div");
-monthInnerLayer.classList.add("month-inner-layer");
+const monthInnerLayer = new $$("div");
+monthInnerLayer.class("month-inner-layer");
 monthInner.map((val, idx) => {
-  const inner = document.createElement("div");
-  inner.classList.add(`inner-${val}`);
-  inner.classList.add(`inner`);
-  inner.innerText = val.toLowerCase();
+  const inner = new $$("div");
+  inner.class(`inner-${val}`);
+  inner.class(`inner`);
+  inner.text(val.toLowerCase());
   if (idx === 0) {
-    inner.classList.add(`high-light`);
-    inner.innerText = val.toLocaleUpperCase();
+    inner.class(`high-light`);
+    inner.text(val.toLocaleUpperCase());
   }
-  inner.style.transform = positionMonth(75, 12, idx);
-  monthInnerLayer.appendChild(inner);
+  inner.transform(positionMonth(75, 12, idx));
+  monthInnerLayer.add(inner.element);
 });
-$("#app").appendChild(monthInnerLayer);
+app.add(monthInnerLayer.element);
 
-const monthCenterLayer = document.createElement("div");
-monthCenterLayer.classList.add("month-center-layer");
+const monthCenterLayer = new $$("div");
+monthCenterLayer.class("month-center-layer");
 monthCenter.map((val, idx) => {
-  const center = document.createElement("div");
-  center.classList.add(`center-${val}`);
-  center.classList.add(`center`);
-  center.innerText = val.toLowerCase();
+  const center = new $$("div");
+  center.class(`center-${val}`);
+  center.class(`center`);
+  center.text(val.toLowerCase());
   if (idx === 0) {
-    center.classList.add(`high-light`);
-    center.innerText = val.toUpperCase();
+    center.class(`high-light`);
+    center.text(val.toUpperCase());
   }
-  center.style.transform = positionMonth(95, 12, idx);
-  monthCenterLayer.appendChild(center);
+  center.transform(positionMonth(95, 12, idx));
+  monthCenterLayer.add(center.element);
 });
-$("#app").appendChild(monthCenterLayer);
+app.add(monthCenterLayer.element);
 
-const monthOuterLayer = document.createElement("div");
-monthOuterLayer.classList.add("month-outer-layer");
+const monthOuterLayer = new $$("div");
+monthOuterLayer.class("month-outer-layer");
 monthOuter.map((val, idx) => {
-  const outer = document.createElement("div");
-  outer.classList.add(`outer-${val}`);
-  outer.classList.add(`outer`);
-  outer.innerText = val.toLowerCase();
+  const outer = new $$("div");
+  outer.class(`outer-${val}`);
+  outer.class(`outer`);
+  outer.text(val.toLowerCase());
   if (idx === 0) {
-    outer.classList.add(`high-light`);
-    outer.innerText = val.toUpperCase();
+    outer.class(`high-light`);
+    outer.text(val.toUpperCase());
   }
-  outer.style.transform = positionMonth(115, 12, idx);
-  monthOuterLayer.appendChild(outer);
+  outer.transform(positionMonth(115, 12, idx));
+  monthOuterLayer.add(outer.element);
 });
-$("#app").appendChild(monthOuterLayer);
+app.add(monthOuterLayer.element);
 
-const layerRing = document.createElement("div");
-layerRing.classList.add("layer-ring");
+const layerRing = new $$("div");
+layerRing.class("layer-ring");
 const ringArr = Array.from({ length: 6 }, (_, idx) => idx + 1);
 ringArr.map((val) => {
-  const deco = document.createElement("div");
-  deco.classList.add(`deco-${val}`);
-  deco.classList.add(`deco`);
-  deco.style.transform = positionRing(141, 6, val);
+  const deco = new $$("div");
+  deco.class(`deco-${val}`);
+  deco.class(`deco`);
+  deco.transform(positionRing(141, 6, val));
   let i = 0;
   setInterval(() => {
-    deco.style.transform = positionRing(141, 6, val + i);
+    deco.transform(positionRing(141, 6, val + i));
     i++;
   }, 60000);
-  layerRing.appendChild(deco);
+  layerRing.add(deco.element);
 });
-$("#app").appendChild(layerRing);
+app.add(layerRing.element);
 
-const layerSecondInner = document.createElement("div");
-layerSecondInner.classList.add("layer-second-inner");
+const layerSecondInner = new $$("div");
+layerSecondInner.class("layer-second-inner");
 const secondArr = Array.from({ length: 60 }, (_, idx) => idx + 1);
 secondArr.map((val) => {
-  const scale = document.createElement("div");
-  scale.classList.add(`scale-${val}`);
-  scale.classList.add(`scale`);
-  scale.style.transform = positionSecond(170, 60, val);
+  const scale = new $$("div");
+  scale.class(`scale-${val}`);
+  scale.class(`scale`);
+  scale.transform(positionSecond(170, 60, val));
   let i = 0;
   setInterval(() => {
-    scale.style.transform = positionSecond(170, 60, val + i);
+    scale.transform(positionSecond(170, 60, val + i));
     i--;
   }, 1000);
 
-  layerSecondInner.appendChild(scale);
+  layerSecondInner.add(scale.element);
 });
-$("#app").appendChild(layerSecondInner);
+app.add(layerSecondInner.element);
 
-const layerSecond = document.createElement("div");
-layerSecond.classList.add("layer-second");
+const layerSecond = new $$("div");
+layerSecond.class("layer-second");
 secondArr.map((val) => {
-  const scale = document.createElement("div");
-  scale.classList.add(`scale-${val}`);
-  scale.classList.add(`scale`);
-  scale.style.transform = positionSecond(190, 60, val, false);
+  const scale = new $$("div");
+  scale.class(`scale-${val}`);
+  scale.class(`scale`);
+  scale.transform(positionSecond(190, 60, val, false));
   let i = 0;
   setInterval(() => {
-    scale.style.transform = positionSecond(190, 60, val + i, false);
+    scale.transform(positionSecond(190, 60, val + i, false));
     i++;
   }, 1000);
 
-  layerSecond.appendChild(scale);
+  layerSecond.add(scale.element);
 });
-$("#app").appendChild(layerSecond);
+app.add(layerSecond.element);
 
-const layerWave = document.createElement("div");
-layerWave.classList.add("layer-wave");
-$("#app").appendChild(layerWave);
+const layerWave = new $$("div");
+layerWave.class("layer-wave");
+app.add(layerWave.element);
 
-const layerNums = document.createElement("div");
-layerNums.classList.add("layer-nums");
+const layerNums = new $$("div");
+layerNums.class("layer-nums");
 const numsArr = Array.from({ length: 12 }, (_, idx) => idx + 1);
 const hour = new Date().getHours();
 numsArr.map((val) => {
-  const num = document.createElement("div");
-  num.classList.add(`num-${val}`);
-  num.classList.add(`num`);
-  num.style.transform = positionNum(250, 12, val);
+  const num = new $$("div");
+  num.class(`num-${val}`);
+  num.class(`num`);
+  num.transform(positionNum(250, 12, val));
   if (val % 12 === hour % 12) {
-    num.classList.add(`high-light-num`);
+    num.class(`high-light-num`);
   }
-  num.innerText = toRoman(val);
-  layerNums.appendChild(num);
+  num.text(toRoman(val));
+  layerNums.add(num.element);
 });
-const min = document.createElement("div");
-min.classList.add(`num`);
-min.classList.add(`high-light-num`);
-min.innerText = new Date().getMinutes();
-min.style.transform = positionNum(275, 12, hour % 12);
-layerNums.appendChild(min);
+const min = new $$("div");
+min.class(`num`);
+min.class(`high-light-num`);
+min.text(new Date().getMinutes());
+min.transform(positionNum(275, 12, hour % 12));
+layerNums.add(min.element);
 
-$("#app").appendChild(layerNums);
+app.add(layerNums.element);
 
 let trans = false;
 const transform3D = () => {
   if (trans) {
-    yearLayer.style.transform = layer3D(0);
-    monthInnerLayer.style.transform = layer3D(0);
-    monthCenterLayer.style.transform = layer3D(0);
-    monthOuterLayer.style.transform = layer3D(0);
-    layerRing.style.transform = layer3D(0);
-    layerSecondInner.style.transform = layer3D(0);
-    layerSecond.style.transform = layer3D(0);
-    layerWave.style.transform = layer3D(0);
-    layerNums.style.transform = layer3D(0);
+    yearLayer.transform(layer3D(0));
+    monthInnerLayer.transform(layer3D(0));
+    monthCenterLayer.transform(layer3D(0));
+    monthOuterLayer.transform(layer3D(0));
+    layerRing.transform(layer3D(0));
+    layerSecondInner.transform(layer3D(0));
+    layerSecond.transform(layer3D(0));
+    layerWave.transform(layer3D(0));
+    layerNums.transform(layer3D(0));
     const timer = setTimeout(() => {
-      yearLayer.style.transform = ``;
-      monthInnerLayer.style.transform = ``;
-      monthCenterLayer.style.transform = ``;
-      monthOuterLayer.style.transform = ``;
-      layerRing.style.transform = ``;
-      layerSecondInner.style.transform = ``;
-      layerSecond.style.transform = ``;
-      layerWave.style.transform = ``;
-      layerNums.style.transform = ``;
+      yearLayer.transform(``);
+      monthInnerLayer.transform(``);
+      monthCenterLayer.transform(``);
+      monthOuterLayer.transform(``);
+      layerRing.transform(``);
+      layerSecondInner.transform(``);
+      layerSecond.transform(``);
+      layerWave.transform(``);
+      layerNums.transform(``);
       trans = false;
       clearTimeout(timer);
     }, 500);
   } else {
-    yearLayer.style.transform = layer3D(0);
-    monthInnerLayer.style.transform = layer3D(0);
-    monthCenterLayer.style.transform = layer3D(0);
-    monthOuterLayer.style.transform = layer3D(0);
-    layerRing.style.transform = layer3D(0);
-    layerSecondInner.style.transform = layer3D(0);
-    layerSecond.style.transform = layer3D(0);
-    layerWave.style.transform = layer3D(0);
-    layerNums.style.transform = layer3D(0);
+    yearLayer.transform(layer3D(0));
+    monthInnerLayer.transform(layer3D(0));
+    monthCenterLayer.transform(layer3D(0));
+    monthOuterLayer.transform(layer3D(0));
+    layerRing.transform(layer3D(0));
+    layerSecondInner.transform(layer3D(0));
+    layerSecond.transform(layer3D(0));
+    layerWave.transform(layer3D(0));
+    layerNums.transform(layer3D(0));
     const timer = setTimeout(() => {
-      yearLayer.style.transform = layer3D(-80);
-      monthInnerLayer.style.transform = layer3D(-60);
-      monthCenterLayer.style.transform = layer3D(-40);
-      monthOuterLayer.style.transform = layer3D(-20);
-      layerSecondInner.style.transform = layer3D(30);
-      layerSecond.style.transform = layer3D(60);
-      layerWave.style.transform = layer3D(80);
-      layerNums.style.transform = layer3D(120);
+      yearLayer.transform(layer3D(-80));
+      monthInnerLayer.transform(layer3D(-60));
+      monthCenterLayer.transform(layer3D(-40));
+      monthOuterLayer.transform(layer3D(-20));
+      layerSecondInner.transform(layer3D(30));
+      layerSecond.transform(layer3D(60));
+      layerWave.transform(layer3D(80));
+      layerNums.transform(layer3D(120));
       trans = true;
       clearTimeout(timer);
     }, 500);
   }
 };
-layerNums.addEventListener("click", transform3D);
+//layerNums.element.addEventListener("click", transform3D);
+const els = [
+  yearLayer,
+  monthInnerLayer,
+  monthCenterLayer,
+  monthOuterLayer,
+  layerRing,
+  layerSecondInner,
+  layerSecond,
+  layerWave,
+  layerNums,
+];
+const va = [-80, -60, -40, -20, 0, 15, 30, 60, 80];
+window.addEventListener("mousemove", (e) => {
+  let x = e.x - window.innerWidth / 2,
+    y = e.y - window.innerHeight / 2;
+  console.log({ x, y });
+  els.map((e, i) => {
+    e.transform(layer3D(va[i], x / 30, y / 30));
+  });
+});
