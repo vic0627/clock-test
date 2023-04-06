@@ -48,8 +48,8 @@ const positionSecond = (radius, divison, order, skew = true) => {
 };
 const dToR = (d) => (Math.PI / 180) * d;
 const layer3D = (r, mouseX = 0, mouseY = 0) => {
-  const rX = mouseX / window.innerWidth * 2;
-  const rY = -(mouseY / window.innerHeight * 2);
+  const rX = (mouseX / window.innerWidth) * 2;
+  const rY = -((mouseY / window.innerHeight) * 2);
   const theta = dToR(rX * 60);
   const phi = dToR(rY * 60);
   const x = r * Math.cos(phi) * Math.sin(theta);
@@ -62,7 +62,9 @@ const layer3D = (r, mouseX = 0, mouseY = 0) => {
     }
   };
   const z = r * Math.cos(theta);
-  return `perspective(500px) rotateX(${rY * 60}deg) rotateY(${rX * 60}deg) translate3d(${x}px, ${y()}px, ${z}px)`;
+  return `perspective(500px) rotateX(${rY * 60}deg) rotateY(${
+    rX * 60
+  }deg) translate3d(${x}px, ${y()}px, ${z}px)`;
 };
 const positionRing = (radius, divison, order) => {
   const odr = order - 3;
@@ -88,8 +90,10 @@ class $$ {
   log() {
     console.log(this.element);
   }
-  class(className) {
-    this.element.classList.add(className);
+  class(className, add = true) {
+    add
+      ? this.element.classList.add(className)
+      : this.element.classList.remove(className);
   }
   add(child) {
     this.element.appendChild(child);

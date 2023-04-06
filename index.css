@@ -66,6 +66,7 @@ body{
     top: calc(50% - 12px);
     left: calc(50% - 8px);
     opacity: .5;
+    transition: all .5s ease-out;
 }
 .high-light{
     color: #F56C6C;
@@ -73,6 +74,7 @@ body{
     opacity: 1;
     font-size: 1.5rem;
     line-height: 0.75;
+    transition: all .5s ease-out;
 }
 .month-center-layer{
     width: 220px;

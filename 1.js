@@ -1,10 +1,10 @@
-class $new {
-  constructor(el) {
-    return document.createElement(el);
-  }
-  log = () => {
-    console.log(this);
+const GUY = (name) => {
+  return {
+    name,
+    call() {
+      console.log(`Hello ${this.name}`);
+    },
   };
-}
-const a = new $new("div");
-console.log(a);
+};
+const mike = GUY("Mike");
+mike.name;

@@ -27,7 +27,27 @@ inputMonth.on("input", (e) => {
   month.map((val, idx) => {
     if (val === e.target.value) mOrder = idx;
   });
-  console.log(mInnerGroup);
+  for (let i = 0; i < 12; i++) {
+    const newI = i - mOrder;
+    if (newI === 0) {
+      mInnerGroup[i].class(`high-light`);
+      mInnerGroup[i].text(monthInner[i].toLocaleUpperCase());
+      mCenterGroup[i].class(`high-light`);
+      mCenterGroup[i].text(monthCenter[i].toLocaleUpperCase());
+      mOuterGroup[i].class(`high-light`);
+      mOuterGroup[i].text(monthOuter[i].toLocaleUpperCase());
+    } else {
+      mInnerGroup[i].class(`high-light`, false);
+      mInnerGroup[i].text(monthInner[i].toLocaleLowerCase());
+      mCenterGroup[i].class(`high-light`, false);
+      mCenterGroup[i].text(monthCenter[i].toLocaleLowerCase());
+      mOuterGroup[i].class(`high-light`, false);
+      mOuterGroup[i].text(monthOuter[i].toLocaleLowerCase());
+    }
+    mInnerGroup[i].transform(positionMonth(75, 12, i - mOrder));
+    mCenterGroup[i].transform(positionMonth(95, 12, i - mOrder));
+    mOuterGroup[i].transform(positionMonth(115, 12, i - mOrder));
+  }
 });
 app.add(inputMonth.element);
 const m = new Date().getMonth();
@@ -52,13 +72,13 @@ const mInnerGroup = monthInner.map((val, idx) => {
   }
   inner.transform(positionMonth(75, 12, idx));
   monthInnerLayer.add(inner.element);
-  return inner.element;
+  return inner;
 });
 app.add(monthInnerLayer.element);
 
 const monthCenterLayer = new $$("div");
 monthCenterLayer.class("month-center-layer");
-monthCenter.map((val, idx) => {
+const mCenterGroup = monthCenter.map((val, idx) => {
   const center = new $$("div");
   center.class(`center-${val}`);
   center.class(`center`);
@@ -69,12 +89,13 @@ monthCenter.map((val, idx) => {
   }
   center.transform(positionMonth(95, 12, idx));
   monthCenterLayer.add(center.element);
+  return center;
 });
 app.add(monthCenterLayer.element);
 
 const monthOuterLayer = new $$("div");
 monthOuterLayer.class("month-outer-layer");
-monthOuter.map((val, idx) => {
+const mOuterGroup = monthOuter.map((val, idx) => {
   const outer = new $$("div");
   outer.class(`outer-${val}`);
   outer.class(`outer`);
@@ -85,6 +106,7 @@ monthOuter.map((val, idx) => {
   }
   outer.transform(positionMonth(115, 12, idx));
   monthOuterLayer.add(outer.element);
+  return outer;
 });
 app.add(monthOuterLayer.element);
 
@@ -175,15 +197,14 @@ const els = [
 ];
 const va = [-120, -80, -60, -40, 10, 30, 50, 80, 100];
 
-window.addEventListener("mousemove", (e) => {
-  const ww = window.innerWidth / 2;
-  const wh = window.innerHeight / 2;
-  const x = e.x - ww;
-  const y = e.y - wh;
-  const dx = ww * Math.sin(x / ww);
-  const dy = wh * Math.sin(y / wh);
-  console.log({ x, dx });
-  els.map((e, i) => {
-    e.transform(layer3D(va[i], x, y));
-  });
-});
+// window.addEventListener("mousemove", (e) => {
+//   const ww = window.innerWidth / 2;
+//   const wh = window.innerHeight / 2;
+//   const x = e.x - ww;
+//   const y = e.y - wh;
+//   const dx = ww * Math.sin(x / ww);
+//   const dy = wh * Math.sin(y / wh);
+//   els.map((e, i) => {
+//     e.transform(layer3D(va[i], x, y));
+//   });
+// });
