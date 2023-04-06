@@ -173,11 +173,16 @@ const els = [
   layerWave,
   layerNums,
 ];
-const va = [-120, -80, -60, -40, 0, 15, 30, 60, 80];
+const va = [-120, -80, -60, -40, 10, 30, 50, 80, 100];
 
 window.addEventListener("mousemove", (e) => {
-  let x = e.x - window.innerWidth / 2,
-    y = e.y - window.innerHeight / 2;
+  const ww = window.innerWidth / 2;
+  const wh = window.innerHeight / 2;
+  const x = e.x - ww;
+  const y = e.y - wh;
+  const dx = ww * Math.sin(x / ww);
+  const dy = wh * Math.sin(y / wh);
+  console.log({ x, dx });
   els.map((e, i) => {
     e.transform(layer3D(va[i], x, y));
   });
