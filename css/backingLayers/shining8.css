@@ -1,0 +1,10 @@
+@keyframes shining8 {
+
+  0% {transform: translateY(0px) translateX(2500px) scale(1);} 2% {transform: translateY(1584px) translateX(2500px);} 4% {transform: translateY(2342px) translateX(2562px);} 6% {transform: translateY(2342px) translateX(3789px);} 8% {transform: translateY(1250px) translateX(3789px);} 10% {transform: translateY(1250px) translateX(2022px);} 12% {transform: translateY(3271px) translateX(2022px);} 14% {transform: translateY(3271px) translateX(1676px);} 16% {transform: translateY(2711px) translateX(1676px);} 18% {transform: translateY(2711px) translateX(1867px);} 20% {transform: translateY(3020px) translateX(1867px);} 22% {transform: translateY(3020px) translateX(1284px);} 24% {transform: translateY(2077px) translateX(1284px);} 26% {transform: translateY(2077px) translateX(3360px);} 28% {transform: translateY(2667px) translateX(3360px);} 30% {transform: translateY(2667px) translateX(1806px);} 32% {transform: translateY(2922px) translateX(1806px);} 34% {transform: translateY(2922px) translateX(2649px);} 36% {transform: translateY(2310px) translateX(2649px);} 38% {transform: translateY(2310px) translateX(3737px);} 40% {transform: translateY(3227px) translateX(3737px);} 42% {transform: translateY(3227px) translateX(2490px);} 44% {transform: translateY(2176px) translateX(2490px);} 46% {transform: translateY(2176px) translateX(3520px);} 48% {transform: translateY(2894px) translateX(3520px);} 50% {transform: translateY(2894px) translateX(1146px) scale(1);}
+  51% {
+    transform: translateY(2894px) translateX(1146px) scale(0);
+  }
+  100% {
+    transform: translateY(2894px) translateX(1146px) scale(0);
+  }
+}

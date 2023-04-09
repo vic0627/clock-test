@@ -31,6 +31,6 @@ const month = [
   "Nov",
   "Dec",
 ];
-
+const date = new Date();
 const menuOptions = ["YEAR", "MONTH", "DATE", "HOUR", "MINUTE", "SECOND"];
-
+export { btn, month, menuOptions, date };

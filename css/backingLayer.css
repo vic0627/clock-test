@@ -1,0 +1,92 @@
+@import "./backingLayers/shining1.css";
+@import "./backingLayers/shining2.css";
+@import "./backingLayers/shining3.css";
+@import "./backingLayers/shining4.css";
+@import "./backingLayers/shining5.css";
+@import "./backingLayers/shining6.css";
+@import "./backingLayers/shining7.css";
+@import "./backingLayers/shining8.css";
+.layer-backing {
+  width: 5000px;
+  height: 5000px;
+  position: absolute;
+  top: calc(50% - 2500px);
+  left: calc(50% - 2500px);
+  opacity: 0;
+}
+.layer-backing-mount{
+  opacity: 1;
+  filter: blur(3px);
+  transition: transform 0.6s ease-out, opacity 1s ease-out 3s, filter 1s ease-out 3s;
+}
+.block-backing-A > .block-backing{
+  animation: shining1 10s linear infinite;
+}
+.block-backing-B > .block-backing{
+  animation: shining2 12s linear infinite;
+}
+.block-backing-C > .block-backing{
+  animation: shining3 14s linear infinite;
+}
+.block-backing-D > .block-backing{
+  animation: shining4 16s linear infinite;
+}
+.block-backing-E > .block-backing{
+  animation: shining5 13s linear infinite;
+}
+.block-backing-F > .block-backing{
+  animation: shining6 11s linear infinite;
+}
+.block-backing-G > .block-backing{
+  animation: shining7 9s linear infinite;
+}
+.block-backing-H > .block-backing{
+  animation: shining8 15s linear infinite;
+}
+
+
+.block-backing {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: -15px;
+  left: -15px;
+  border-radius: 50%;
+  background: var(--default-4);
+  box-shadow: 0 0 30px 0 var(--default-1);
+}
+.block-backing:nth-child(2){
+  width: 25px;
+  height: 25px;
+  top: -12.5px;
+  left: -12.5px;
+  animation-delay: 0.02s;
+}
+.block-backing:nth-child(3) {
+  width: 20px;
+  height: 20px;
+  top: -10px;
+  left: -10px;
+  animation-delay: 0.04s;
+}
+.block-backing:nth-child(4) {
+  width: 15px;
+  height: 15px;
+  top: -7.5px;
+  left: -7.5px;
+  animation-delay: 0.06s;
+}
+.block-backing:nth-child(5) {
+  width: 10px;
+  height: 10px;
+  top: -5px;
+  left: -5px;
+  animation-delay: 0.08s;
+}
+.block-backing:nth-child(6) {
+  width: 5px;
+  height: 5px;
+  top: -2.5px;
+  left: -2.5px;
+  animation-delay: 0.1s;
+}

@@ -84,10 +84,13 @@ const positionMonth = (radius, divison, order) => {
   return `perspective(500px) translateX(${x}px) translateY(${y}px)`;
 };
 class $$ {
-  constructor(el = "div", isNew = true) {
+  constructor(el = "div", isNew = true, attrs = {}) {
     isNew
       ? (this.element = document.createElement(el))
       : (this.element = document.querySelector(el));
+    Object.keys(attrs).forEach((key) => {
+      this.element.setAttribute(key, attrs[key]);
+    });
   }
   log() {
     console.log(this.element);
@@ -101,7 +104,7 @@ class $$ {
     this.element.appendChild(child);
   }
   remove(child) {
-    this.element.removeChild(child);
+    child ? this.element.removeChild(child) : this.element.remove();
   }
   attr(name, value) {
     this.element.setAttribute(name, value);
@@ -127,4 +130,14 @@ const delay = (callback, delay) => {
     callback();
     clearTimeout(timer);
   }, delay);
+};
+export {
+  toRoman,
+  positionNum,
+  positionSecond,
+  layer3D,
+  positionRing,
+  positionMonth,
+  $$,
+  delay,
 };

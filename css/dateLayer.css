@@ -1,0 +1,47 @@
+.date-layer {
+  /* outline: 1px solid red; */
+  width: 180px;
+  height: 80px;
+  position: absolute;
+  top: calc(50% - 110px);
+  left: calc(50% + 240px);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-sizing: border-box;
+  scale: 0.6;
+  background: var(--bg);
+  border-radius: 5px;
+  border: 3px solid var(--default-5);
+  box-shadow: 0 0 10px 0 var(--default-2);
+  transition: transform 0.5s ease-out;
+  transform: skewX(-15deg);
+}
+.date-layer::before{
+  width: 245px;
+  height: 3px;
+  content: "";
+  background: var(--default-5);
+  box-shadow: 0 0 30px 0 var(--default-2);
+  position: absolute;
+  top: calc(50% - 1.5px);
+  left: -245px;
+}
+.date-group {
+  width: 52px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+}
+.date-layer >.date-group > .digi-num{
+  transform: none;
+}
+.date-text{
+  font-size: 2rem;
+  letter-spacing: 5px;
+  margin-left: 10px;
+  color: var(--strong-5);
+  text-shadow: 0 0 10px var(--strong-2);
+}
