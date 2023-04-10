@@ -107,7 +107,7 @@ body {
   position: absolute;
   background: #E6A23C00;
   box-shadow: 0 0 0 0 #f8e3c5;
-  transition: all 0.5s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .digi-num>.digi-num-part:nth-child(1) {

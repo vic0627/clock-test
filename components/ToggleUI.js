@@ -1,22 +1,26 @@
 import CLOCK from "../modules/main.js";
-import { mouseMoveHandler } from "../handlers/window.js";
-import { reCall } from "../modules/composables/logic.js";
+import { mouseMove3D } from "../handlers/window.js";
 
 const { $$, layer3D } = CLOCK;
 
 const toggle = ["PAUSE", "EXPLORE"];
 
+let canMove = false;
+
+const toggleLayer = new $$("div", { class: "layer-toggle" });
+
+const toggleModePause = new $$("div", { class: "toggle-mode" })
+  .text(toggle[0])
+  .addTo(toggleLayer);
+const toggleModeExplore = new $$("div", { class: "toggle-mode" })
+  .text(toggle[1])
+  .addTo(toggleLayer);
+
 const ToggleUI = (Layers) => {
-  const toggleLayer = new $$("div", { class: "layer-toggle" });
+  const layerValues = Object.values(Layers);
+  const layerArr = layerValues.map((val) => Object.values(val())[0]);
+  const depthArr = layerValues.map((val) => val()["depth"]);
 
-  const toggleModePause = new $$("div", { class: "toggle-mode" })
-    .text(toggle[0])
-    .addTo(toggleLayer);
-  const toggleModeExplore = new $$("div", { class: "toggle-mode" })
-    .text(toggle[1])
-    .addTo(toggleLayer);
-
-  let canMove = false;
   toggleLayer.on("click", () => {
     canMove ? (canMove = false) : (canMove = true);
     if (canMove) {
@@ -33,13 +37,9 @@ const ToggleUI = (Layers) => {
       toggleModeExplore.class("explore", false);
     }
   });
-  const layerValues = Object.values(Layers);
-  const layerArr = layerValues.map((val) => Object.values(val)[0]);
-  const depthArr = layerValues.map((val) => val["depth"]);
-  // console.log({ layerArr, depthArr });
 
   window.addEventListener("mousemove", (e) =>
-    mouseMoveHandler(e, canMove, layerArr, depthArr)
+    mouseMove3D(e, canMove, layerArr, depthArr)
   );
   return {
     toggleLayer,

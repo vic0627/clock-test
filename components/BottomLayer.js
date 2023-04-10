@@ -4,15 +4,14 @@ const { $$, reCall } = CLOCK;
 
 const depth = -120;
 
+const bottomLayer = new $$("div", { class: "layer-Bottom" }).addTo(CLOCK.app);
+reCall((timer) => {
+  if (bottomLayer) {
+    bottomLayer.class("layer-Bottom-mount");
+    clearInterval(timer);
+  }
+});
 const BottomLayer = () => {
-  const bottomLayer = new $$("div", { class: "layer-Bottom" }).addTo(CLOCK.app);
-
-  reCall((timer) => {
-    if (bottomLayer) {
-      bottomLayer.class("layer-Bottom-mount");
-      clearInterval(timer);
-    }
-  });
   return { bottomLayer, depth };
 };
-export default BottomLayer();
+export default BottomLayer;

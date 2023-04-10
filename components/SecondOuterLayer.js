@@ -8,28 +8,26 @@ const secondOuterTimer = [];
 
 const depth = 50;
 
-const SecondOuterLayer = () => {
-  const secondOuterLayer = new $$("div", { class: "layer-second-outer" });
+const secondOuterLayer = new $$("div", { class: "layer-second-outer" });
 
-  const secondOuterGroup = secondArr.map((val) => {
-    const scale = new $$("div", { class: "scale" })
-      .addTo(secondOuterLayer)
-      .transform(
-        position({ radius: 190, division: 60, order: val, skew: -30 })
+const secondOuterGroup = secondArr.map((val) => {
+  const scale = new $$("div", { class: "scale" })
+    .addTo(secondOuterLayer)
+    .transform(position({ radius: 190, division: 60, order: val, skew: -30 }));
+  const secondOuterTimerTrigger = () => {
+    let i = 0;
+    reCall(() => {
+      scale.transform(
+        position({ radius: 190, division: 60, order: val + i, skew: -30 })
       );
-    const secondOuterTimerTrigger = () => {
-      let i = 0;
-      reCall(() => {
-        scale.transform(
-          position({ radius: 190, division: 60, order: val + i, skew: -30 })
-        );
-        i++;
-      }, 1000);
-    };
-    secondOuterTimer.push(secondOuterTimerTrigger);
-    return scale;
-  });
+      i++;
+    }, 1000);
+  };
+  secondOuterTimer.push(secondOuterTimerTrigger);
+  return scale;
+});
 
+const SecondOuterLayer = () => {
   return {
     secondOuterLayer,
     secondOuterGroup,
@@ -37,4 +35,4 @@ const SecondOuterLayer = () => {
     depth,
   };
 };
-export default SecondOuterLayer();
+export default SecondOuterLayer;

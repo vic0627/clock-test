@@ -72,6 +72,7 @@
 .high-light {
     color: var(--strong-5);
     text-shadow: 0 0 30px var(--strong-2);
+    text-transform: uppercase;
     opacity: 1;
     font-size: 1.5rem;
     line-height: 0.75;

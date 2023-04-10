@@ -1,8 +1,11 @@
 import CLOCK from "../modules/main.js";
 const { $$ } = CLOCK;
+
 const depth = 80;
+
+const layerWave = new $$("div", { class: "layer-wave" });
+
 const WaveLayer = () => {
-  const layerWave = new $$("div", { class: "layer-wave" });
   return { layerWave, depth };
 };
-export default WaveLayer();
+export default WaveLayer;
