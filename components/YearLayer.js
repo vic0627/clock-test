@@ -1,10 +1,12 @@
 import CLOCK from "../modules/main.js";
 import { digiNumUnit, digiNumGroupRun } from "./DigiNum.js";
 
+const { $$, date } = CLOCK;
+
+const depth = -110;
+
 const YearLayer = () => {
-  const yearLayer = new CLOCK.$$("div", { class: "layer-year" }).addTo(
-    CLOCK.app
-  );
+  const yearLayer = new $$("div", { class: "layer-year" });
 
   const yearNumGroup = [];
 
@@ -12,7 +14,7 @@ const YearLayer = () => {
     const digiNum = digiNumUnit().addTo(yearLayer);
     yearNumGroup.push(digiNum);
   }
-  digiNumGroupRun(2023, yearNumGroup);
-  return { yearLayer, yearNumGroup };
+  digiNumGroupRun(date.getFullYear(), yearNumGroup);
+  return { yearLayer, yearNumGroup, depth };
 };
 export default YearLayer();

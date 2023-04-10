@@ -1,12 +1,13 @@
 import CLOCK from "../modules/main.js";
 import { mouseMoveHandler } from "../handlers/window.js";
+import { reCall } from "../modules/composables/logic.js";
 
-const { $$, menuOptions, btn, app, reCall, delay, layer3D } = CLOCK;
+const { $$, layer3D } = CLOCK;
 
 const toggle = ["PAUSE", "EXPLORE"];
 
 const ToggleUI = (Layers) => {
-  const toggleLayer = new $$("div", { class: "layer-toggle" }).addTo(app);
+  const toggleLayer = new $$("div", { class: "layer-toggle" });
 
   const toggleModePause = new $$("div", { class: "toggle-mode" })
     .text(toggle[0])
@@ -22,7 +23,6 @@ const ToggleUI = (Layers) => {
       toggleModePause.class("pause");
       toggleModeExplore.class("explore");
       layerArr.map((e, i) => {
-        console.log(e)
         e.transform(layer3D(depthArr[i], 0, 0));
       });
     } else {
@@ -33,10 +33,16 @@ const ToggleUI = (Layers) => {
       toggleModeExplore.class("explore", false);
     }
   });
-  const layerArr = Layers.map((val) => val["layer"]);
-  const depthArr = Layers.map((val) => val["depth"]);
+  const layerValues = Object.values(Layers);
+  const layerArr = layerValues.map((val) => Object.values(val)[0]);
+  const depthArr = layerValues.map((val) => val["depth"]);
+  // console.log({ layerArr, depthArr });
+
   window.addEventListener("mousemove", (e) =>
     mouseMoveHandler(e, canMove, layerArr, depthArr)
   );
+  return {
+    toggleLayer,
+  };
 };
 export default ToggleUI;

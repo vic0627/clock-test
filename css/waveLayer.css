@@ -1,0 +1,46 @@
+.layer-wave {
+    width: 450px;
+    height: 450px;
+    position: absolute;
+    z-index: 10;
+    top: calc(50% - 225px);
+    left: calc(50% - 225px);
+    border-radius: 50%;
+    box-shadow: 0 0 5px 0 #fff inset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scale: 0.8;
+    opacity: 0;
+}
+
+.layer-wave-mount {
+    scale: 1;
+    opacity: 1;
+    transition: transform 0.5s ease-out, scale 1s ease-out, opacity 1s ease-out;
+}
+
+.layer-wave::before,
+.layer-wave::after {
+    width: 88%;
+    height: 88%;
+    content: "";
+    border-radius: 50%;
+    box-shadow: 0 0 5px 0 #fff inset;
+    position: absolute;
+    opacity: 0;
+}
+
+.layer-wave-mount::before {
+    width: 96%;
+    height: 96%;
+    opacity: 0.666666;
+    transition: width 1s ease-out .3s, height 1s ease-out .3s, opacity 1s ease-out .3s;
+}
+
+.layer-wave-mount::after {
+    width: 92%;
+    height: 92%;
+    opacity: 0.333333;
+    transition: width 1s ease-out .6s, height 1s ease-out .6s, opacity 1s ease-out .6s;
+}

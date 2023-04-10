@@ -4,10 +4,10 @@ const { $$, app, month, position } = CLOCK;
 
 const monthOuter = month.map((val) => [...val][2]);
 
+const depth = -40;
+
 const MonthOuterLayer = () => {
-  const monthOuterLayer = new $$("div", { class: "month-outer-layer" }).addTo(
-    app
-  );
+  const monthOuterLayer = new $$("div", { class: "month-outer-layer" });
   const mOuterGroup = monthOuter.map((val, idx) => {
     const outer = new $$("div", { class: `center` }).text(val.toLowerCase());
     outer.transform(
@@ -21,6 +21,6 @@ const MonthOuterLayer = () => {
     monthOuterLayer.add(outer);
     return outer;
   });
-  return { monthOuterLayer, mOuterGroup };
+  return { monthOuterLayer, mOuterGroup, depth };
 };
 export default MonthOuterLayer();

@@ -1,0 +1,82 @@
+.layer-hour {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    z-index: 11;
+    top: calc(50% - 250px);
+    left: calc(50% - 250px);
+    rotate: 180deg;
+}
+
+.layer-hour-mount {
+    rotate: 0deg;
+    transition: transform 0.5s ease-out, rotate 3s ease-out 2s;
+}
+
+.hour-num {
+    font-size: 1.5rem;
+    width: 55px;
+    text-align: center;
+    position: absolute;
+    top: calc(50% - 18px);
+    left: calc(50% - 27.5px);
+    opacity: 0;
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out;
+}
+
+.layer-hour-mount>.hour-num {
+    opacity: 1;
+}
+
+.layer-hour-mount>.hour-num:nth-child(1) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 2.15s;
+}
+
+.layer-hour-mount>.hour-num:nth-child(2) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 2.3s;
+}
+
+.layer-hour-mount>.hour-num:nth-child(3) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 2.45s;
+}
+
+.layer-hour-mount>.hour-num:nth-child(4) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 2.6s;
+}
+
+.layer-hour-mount>.hour-num:nth-child(5) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 2.75s;
+}
+
+.layer-hour-mount>.hour-num:nth-child(6) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 2.9s;
+}
+
+.layer-hour-mount>.hour-num:nth-child(7) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 3.05s;
+}
+
+.layer-hour-mount>.hour-num:nth-child(8) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 3.2s;
+}
+
+.layer-hour-mount>.hour-num:nth-child(9) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 3.35s;
+}
+
+.layer-hour-mount>.hour-num:nth-child(10) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 3.5s;
+}
+
+.layer-hour-mount>.hour-num:nth-child(11) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 3.65s;
+}
+
+.layer-hour-mount>.hour-num:nth-child(12) {
+    transition: color 0.5s ease-out, text-shadow 0.5s ease-out, opacity 0.8s ease-out 3.8s;
+}
+
+.high-light-num {
+    color: var(--strong-5);
+    text-shadow: 0 0 30px var(--strong-2);
+}

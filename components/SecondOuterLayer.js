@@ -6,10 +6,10 @@ const secondArr = Array.from({ length: 60 }, (_, idx) => idx + 1);
 
 const secondOuterTimer = [];
 
+const depth = 50;
+
 const SecondOuterLayer = () => {
-  const secondOuterLayer = new $$("div", { class: "layer-second-outer" }).addTo(
-    app
-  );
+  const secondOuterLayer = new $$("div", { class: "layer-second-outer" });
 
   const secondOuterGroup = secondArr.map((val) => {
     const scale = new $$("div", { class: "scale" })
@@ -17,21 +17,24 @@ const SecondOuterLayer = () => {
       .transform(
         position({ radius: 190, division: 60, order: val, skew: -30 })
       );
-    let i = 0;
-    secondOuterTimer.push(
+    const secondOuterTimerTrigger = () => {
+      let i = 0;
       reCall(() => {
         scale.transform(
           position({ radius: 190, division: 60, order: val + i, skew: -30 })
         );
         i++;
-      }, 1000)
-    );
+      }, 1000);
+    };
+    secondOuterTimer.push(secondOuterTimerTrigger);
     return scale;
   });
 
   return {
     secondOuterLayer,
     secondOuterGroup,
+    secondOuterTimer,
+    depth,
   };
 };
 export default SecondOuterLayer();

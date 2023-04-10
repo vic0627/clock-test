@@ -1,3 +1,5 @@
+import { reCall } from "../composables/logic.js";
+
 export default class $$ {
   constructor(el = "div", attrs = {}) {
     const isSelector = el.includes("#") || el.includes(".");
@@ -7,30 +9,35 @@ export default class $$ {
     Object.keys(attrs).forEach((key) => {
       this.element.setAttribute(key, attrs[key]);
     });
+    this.events = [];
   }
   log() {
-    console.log(this.element);
+    console.log(this);
     return this;
   }
   class(className, add = true) {
     add
       ? this.element.classList.add(className)
       : this.element.classList.remove(className);
-      return this;
+    return this;
   }
   add(child) {
-    if(child instanceof $$){
+    if (child instanceof $$) {
       this.element.appendChild(child.element);
-    }else{
-      throw new Error("低能嗎?")
+    } else if (child instanceof Array) {
+      child.forEach((el) => {
+        this.element.appendChild(el.element);
+      });
+    } else {
+      throw new Error("低能嗎?");
     }
     return this;
   }
   addTo(parent) {
-    if(parent instanceof $$){
+    if (parent instanceof $$) {
       parent.add(this);
-    }else{
-      throw new Error("低能嗎?")
+    } else {
+      throw new Error("低能嗎?");
     }
     return this;
   }
@@ -62,6 +69,21 @@ export default class $$ {
   }
   on(event, callback) {
     this.element.addEventListener(event, callback);
+    this.events.push({ event, callback });
+    return this;
+  }
+  off(event, callback) {
+    if (this.events) {
+      const cache = this.events;
+      cache.map((val) => {
+        this.element.removeEventListener(val.event, val.callback);
+        this.events.shift();
+      });
+    } else if (event && callback) {
+      this.element.removeEventListener(event, callback);
+    } else {
+      throw new Error("沒有註冊事件!");
+    }
     return this;
   }
 }

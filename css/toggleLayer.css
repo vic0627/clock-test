@@ -1,0 +1,48 @@
+.layer-toggle {
+    width: 200px;
+    height: 16px;
+    margin: 0 auto;
+    position: absolute;
+    z-index: 20;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.layer-toggle-mount {
+    opacity: 1;
+    transition: opacity .5s ease-out;
+}
+
+.toggle-mode {
+    text-align: center;
+    color: var(--strong-5);
+    text-shadow: 0 0 30px var(--strong-2);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 16px;
+    letter-spacing: 10px;
+    text-indent: 10px;
+    transform: perspective(500px);
+    transition: all 0.5s ease-out;
+}
+
+.toggle-mode:nth-child(2) {
+    top: 100%;
+    transform: perspective(500px) rotateX(-90deg);
+}
+
+.toggle-mode.pause {
+    top: -100%;
+    transform: perspective(500px) rotateX(90deg);
+}
+
+.toggle-mode.explore {
+    top: 0;
+    transform: perspective(500px) rotateX(0deg);
+}

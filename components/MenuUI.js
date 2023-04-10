@@ -4,7 +4,7 @@ const { $$, menuOptions, btn, app, reCall, delay } = CLOCK;
 const delayFactor = 0.07;
 
 const MenuUI = () => {
-  const menuLayer = new $$("div", { class: "layer-menu" }).addTo(app);
+  const menuLayer = new $$("div", { class: "layer-menu" });
 
   const menuOption = new $$("div", { class: "menu-option" }).addTo(menuLayer);
 
@@ -70,10 +70,15 @@ const MenuUI = () => {
   const titleIdCount = (op) => {
     op ? titleId++ : titleId--;
     if (titleId === menuOptions.length) titleId = 0;
-    if (titleId === -1) titleId = 5;
+    if (titleId === -1) titleId = menuOptions.length - 1;
+    console.log(titleId);
     return titleId;
   };
   menuNextBtn.on("click", () => createMenuTitle(titleIdCount(true)));
   menuPreBtn.on("click", () => createMenuTitle(titleIdCount(false)));
+
+  return {
+    menuLayer,
+  };
 };
-export default MenuUI;
+export default MenuUI();

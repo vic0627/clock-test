@@ -13,6 +13,7 @@
   top: calc(50% - 2500px);
   left: calc(50% - 2500px);
   opacity: 0;
+  z-index: 1;
 }
 .layer-backing-mount{
   opacity: 1;

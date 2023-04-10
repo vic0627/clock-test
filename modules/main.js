@@ -1,7 +1,7 @@
 import $$ from "./$$/$$.js";
 import { month, menuOptions, btn, date } from "./composables/objects.js";
 import { layer3D, position } from "./composables/transform.js";
-import { delay, reCall, toRoman } from "./composables/logic.js";
+import { delay, reCall, toRoman, promise } from "./composables/logic.js";
 import { digiNumUnit, digiNumGroupRun } from "../components/DigiNum.js";
 
 const app = new $$("#app", false);
@@ -18,6 +18,7 @@ const CLOCK = {
   delay,
   reCall,
   toRoman,
+  promise,
   digiNumUnit,
   digiNumGroupRun,
 };

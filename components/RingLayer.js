@@ -3,13 +3,13 @@ import DateLayer from "./DateLayer.js";
 const { $$, app, position } = CLOCK;
 const { dateLayer } = DateLayer;
 const ringArr = Array.from({ length: 6 }, (_, idx) => idx + 1);
-
+const depth = 10;
 const RingLayer = () => {
-  const ringLayer = new $$("div", { class: "layer-ring" }).addTo(app);
+  const ringLayer = new $$("div", { class: "layer-ring" });
 
   dateLayer.addTo(ringLayer);
-  
-  ringArr.map((val) => {
+
+  const decoGroup = ringArr.map((val) => {
     const deco = new $$("div", { class: "deco" })
       .transform(
         position({
@@ -19,9 +19,13 @@ const RingLayer = () => {
         })
       )
       .addTo(ringLayer);
+    return deco;
   });
   return {
     ringLayer,
+    decoGroup,
+    depth,
+    dateLayer,
   };
 };
 export default RingLayer();

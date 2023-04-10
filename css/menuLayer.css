@@ -1,0 +1,73 @@
+.layer-menu {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    z-index: 20;
+    top: 15%;
+    opacity: 0;
+}
+.layer-menu-mount{
+    opacity: 1;
+    transition: opacity .5s ease-out;
+}
+.menu-option {
+    order: 2;
+    width: 300px;
+    height: 48px;
+    display: flex;
+    justify-content: space-evenly;
+    overflow: hidden;
+}
+
+.menu-option-char {
+    font-size: 2rem;
+    color: var(--strong-5);
+    text-shadow: 0 0 10px var(--strong-1);
+    transform: translateY(-48px);
+    transition: transform 0.07s ease-out;
+}
+
+.menu-option-char.char-preIn {
+    transform: translateY(48px);
+}
+
+.menu-option-char.char-in {
+    transform: translateY(0px);
+}
+
+.menu-pre-btn,
+.menu-next-btn {
+    width: 30px;
+    height: 26px;
+    position: relative;
+    cursor: pointer;
+}
+
+.menu-pre-btn>svg,
+.menu-next-btn>svg {
+    width: 86px;
+    height: 82px;
+    position: absolute;
+    top: calc(50% - 41px);
+    left: calc(50% - 43px);
+    pointer-events: none;
+}
+
+.menu-pre-btn>svg {
+    transform: rotate(-90deg);
+}
+
+.menu-next-btn>svg {
+    transform: rotate(90deg);
+}
+
+.menu-pre-btn {
+    order: 1;
+}
+
+.menu-next-btn {
+    order: 3;
+}

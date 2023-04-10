@@ -1,5 +1,8 @@
 import CLOCK from "../modules/main.js";
 const { delay } = CLOCK;
+
+const depth = -2000;
+
 const BackingLayer = () => {
   const backingLayer = new CLOCK.$$("div", { class: "layer-backing" }).addTo(
     CLOCK.app
@@ -57,7 +60,7 @@ const BackingLayer = () => {
     backingLayer.class("layer-backing-mount");
   }, 100);
 
-  return { backingLayer };
+  return { backingLayer, depth };
 };
 
-export default BackingLayer;
+export default BackingLayer();

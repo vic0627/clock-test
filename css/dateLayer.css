@@ -14,8 +14,12 @@
   border-radius: 5px;
   border: 3px solid var(--default-5);
   box-shadow: 0 0 10px 0 var(--default-2);
-  transition: transform 0.5s ease-out;
   transform: skewX(-15deg);
+  clip-path: polygon(-245px -10%, -245px -10%, -245px 110%, -245px 110%);
+}
+.date-layer-mount{
+  clip-path: polygon(-245px -10%, 110% -10%, 110% 110%, -245px 110%);
+  transition: transform 0.5s ease-out, clip-path 1s ease-out 2.5s;
 }
 .date-layer::before{
   width: 245px;

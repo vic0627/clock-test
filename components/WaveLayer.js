@@ -1,8 +1,8 @@
 import CLOCK from "../modules/main.js";
-const { $$, position, reCall, app, digiNumUnit, digiNumGroupRun } = CLOCK;
-
+const { $$ } = CLOCK;
+const depth = 80;
 const WaveLayer = () => {
-  const layerWave = new $$("div", { class: "layer-wave" }).addTo(app);
-  return { layerWave };
+  const layerWave = new $$("div", { class: "layer-wave" });
+  return { layerWave, depth };
 };
 export default WaveLayer();

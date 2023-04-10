@@ -39,5 +39,11 @@ const reCall = (callback, freq = 10) => {
   }, freq);
   return timer;
 };
-
-export { toRoman, dToR, delay, reCall };
+const promise = (callback, time, type = "reCall") => {
+  let timerType = (type = "reCall" ? reCall : delay);
+  return new Promise((resolve) => {
+    timerType(callback, time);
+    resolve();
+  });
+};
+export { toRoman, dToR, delay, reCall, promise };

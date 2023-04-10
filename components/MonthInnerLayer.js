@@ -4,10 +4,10 @@ const { $$, app, month, position } = CLOCK;
 
 const monthInner = month.map((val) => [...val][0]);
 
+const depth = -80;
+
 const MonthInnerLayer = () => {
-  const monthInnerLayer = new $$("div", { class: "month-inner-layer" }).addTo(
-    app
-  );
+  const monthInnerLayer = new $$("div", { class: "month-inner-layer" });
   const mInnerGroup = monthInner.map((val, idx) => {
     const inner = new $$("div", { class: `inner` }).text(val.toLowerCase());
     inner.transform(
@@ -24,6 +24,7 @@ const MonthInnerLayer = () => {
   return {
     monthInnerLayer,
     mInnerGroup,
+    depth,
   };
 };
 export default MonthInnerLayer();
