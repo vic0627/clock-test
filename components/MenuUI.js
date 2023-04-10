@@ -79,6 +79,7 @@ const MenuUI = () => {
 
   return {
     menuLayer,
+    titleId,
   };
 };
 export default MenuUI();
