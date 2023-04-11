@@ -34,4 +34,12 @@ const month = [
 const date = new Date();
 const menuOptions = ["YEAR", "MONTH", "DATE"];
 const dayOptions = ["st", "nd", "rd", "th"];
-export { btn, month, menuOptions, date, dayOptions };
+const testRes = {
+  article:
+    "On June 27, 1995, the NBA held its annual draft in Toronto. This year's draft was especially noteworthy because Kevin Garnett, a high school basketball star from Chicago, was selected as the fifth overall pick by the Minnesota Timberwolves. Garnett's selection was significant because he was the first high school player to be drafted in 20 years. He paved the way for other high school players to follow in his footsteps, such as Kobe Bryant, LeBron James, and Dwight Howard.\n\nGarnett's selection raised eyebrows, as many thought it was too big of a risk to draft a player who had not played at the college level. However, Garnett was a phenom on the court, standing at 6'11'' with a unique set of skills that made him a top prospect. He would go on to have a 21-year career in the NBA, win an MVP award, and lead the Boston Celtics to an NBA championship in 2008.\n\nGarnett's selection in the 1995 NBA Draft marked a turning point in the league's history, as it opened the door for high school players to be considered as draft prospects. Although the NBA has since implemented policies to require players to be at least one year removed from high school before entering the draft, Garnett's selection will forever be remembered as a game-changer in the world of basketball.",
+  description:
+    "The most important object in the article is Kevin Garnett's draft number, 5th overall, as it signified the end of a 20-year drought of high school players being drafted, and opened the door for future players like Kobe Bryant and LeBron James to enter the league straight from high school.",
+  title:
+    "1995 NBA Draft: Kevin Garnett becomes first high school player in 20 years to be drafted",
+};
+export { btn, month, menuOptions, date, dayOptions, testRes };

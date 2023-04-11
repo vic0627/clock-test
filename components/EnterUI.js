@@ -48,6 +48,7 @@ const EnterUI = (Layers) => {
   const { layerHour } = HourLayer();
 
   const clickHandler = () => {
+    fetchChat("1995-6-27");
     enterTitle.class("enter-title-mount", false);
     enterBtn.class("enter-btn-mount", false).off();
     delay(() => {

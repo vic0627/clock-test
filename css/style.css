@@ -9,6 +9,7 @@
 @import "./hourLayer.css";
 @import "./menuLayer.css";
 @import "./toggleLayer.css";
+@import "./mouseFollower.css";
 @import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
 
 * {
@@ -47,6 +48,7 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 1.5;
+  cursor: none;
 }
 
 body {

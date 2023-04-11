@@ -31,7 +31,6 @@
   overflow: hidden;
 }
 .enter-btn-mount {
-  cursor: pointer;
   pointer-events: all;
   scale: 1;
   opacity: 1;

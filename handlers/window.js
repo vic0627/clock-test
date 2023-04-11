@@ -7,13 +7,15 @@ import MonthInnerLayer from "../components/MonthInnerLayer.js";
 import MonthCenterLayer from "../components/MonthCenterLayer.js";
 import MonthOuterLayer from "../components/MonthOuterLayer.js";
 import DateLayer from "../components/DateLayer.js";
+import MouseFollower from "../components/mouseFollower.js";
 const { yearNumGroup } = YearLayer();
 const { mInnerGroup } = MonthInnerLayer();
 const { mCenterGroup } = MonthCenterLayer();
 const { mOuterGroup } = MonthOuterLayer();
 const { numGroup, dateText, dateFix, nowDay } = DateLayer();
 const monthGroup = [mInnerGroup, mCenterGroup, mOuterGroup];
-const { layer3D, date, delay } = CLOCK;
+const { mouseFollower } = MouseFollower;
+const { layer3D, date, delay, app } = CLOCK;
 
 const mouseMove3D = (e, canMove, layers, depth) => {
   if (!canMove) return;
@@ -141,7 +143,7 @@ const dateCal = (op) => {
     currentDate = 1;
     canRunD = false;
   }
-  console.log({ month, currentDate });
+  console.log(searchDate);
 };
 
 const menuType = (e) => {
@@ -172,8 +174,18 @@ const menuType = (e) => {
       }, 500);
       break;
   }
+  searchDate = `${year}-${month === 0 ? 12 : month + 1}-${currentDate}`;
 };
 
 window.addEventListener("wheel", menuType);
+window.addEventListener("mousemove", (e) => {
+  mouseFollower.addTo(app);
+  mouseFollower.style("top", e.y - 5 + "px");
+  mouseFollower.style("left", e.x - 5 + "px");
+});
+window.addEventListener("mouseout", (e) => {
+  mouseFollower.remove();
+});
 
-export { mouseMove3D };
+let searchDate;
+export { mouseMove3D, searchDate };

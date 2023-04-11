@@ -1,6 +1,6 @@
 .date-layer {
   /* outline: 1px solid red; */
-  width: 180px;
+  width: 170px;
   height: 80px;
   position: absolute;
   top: calc(50% - 110px);
@@ -32,7 +32,7 @@
   left: -245px;
 }
 .date-group {
-  width: 52px;
+  width: 56px;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -48,4 +48,5 @@
   margin-left: 10px;
   color: var(--strong-5);
   text-shadow: 0 0 10px var(--strong-2);
+  margin-top: 14px;
 }

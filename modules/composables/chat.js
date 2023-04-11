@@ -9,12 +9,22 @@ const createOptions = (date = "1989-06-04") => ({
           "model":"gpt-3.5-turbo",
           "messages":[{
             "role":"user",
-            "content":"What happend on ${date}? Response in js object which includes three different keys, 'title', 'article', 'brief'. The 'article' must be over 100 words, and the 'brief' is a brief description(word limit: 20) of either the scene or objects that appears in the 'article'."
+            "content":"What happend on ${date}? Response in js object which includes three different keys, 'title', 'article', 'description'. The 'article' must be over 100 words, and the 'description' is a description of the most impotant object or scene that appears in the 'article'."
           }]
         }`,
+  // body: `{
+  //         "model":"gpt-3.5-turbo",
+  //         "messages":[{
+  //           "role":"user",
+  //           "content":"Response in js object which includes three different keys, 'title', 'article', 'description'. Total words do not over 50."
+  //         }]
+  //       }`,
 });
 
-fetch("https://openai80.p.rapidapi.com/chat/completions", options)
-  .then((response) => response.json())
-  .then((response) => console.log(response))
-  .catch((err) => console.error(err));
+const fetchChat = (date = "1989-6-4") => {
+  fetch("https://openai80.p.rapidapi.com/chat/completions", createOptions(date))
+    .then((response) => response.json())
+    .then((response) => console.log(JSON.parse(response.choices[0].message.content)))
+    .catch((err) => console.error(err));
+};
+export { fetchChat };

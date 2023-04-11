@@ -9,6 +9,7 @@ import {
 import { layer3D, position } from "./composables/transform.js";
 import { delay, reCall, toRoman, promise } from "./composables/logic.js";
 import { digiNumUnit, digiNumGroupRun } from "../components/DigiNum.js";
+import { fetchChat } from "./composables/chat.js";
 
 const app = new $$("#app", false);
 
@@ -28,6 +29,7 @@ const CLOCK = {
   promise,
   digiNumUnit,
   digiNumGroupRun,
+  fetchChat,
 };
 
 export default CLOCK;
