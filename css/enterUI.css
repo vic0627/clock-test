@@ -40,7 +40,7 @@
     text-shadow 0.5s linear;
 }
 .enter-btn-mount:hover {
-  color: var(--success-5);
-  text-shadow: 0 0 30px #f0f9eb88;
+  color: var(--strong-5);
+  text-shadow: 0 0 30px #faecd888;
   transition: color 0.3s linear, text-shadow 0.3s linear;
 }

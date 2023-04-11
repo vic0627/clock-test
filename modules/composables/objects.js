@@ -33,4 +33,5 @@ const month = [
 ];
 const date = new Date();
 const menuOptions = ["YEAR", "MONTH", "DATE"];
-export { btn, month, menuOptions, date };
+const dayOptions = ["st", "nd", "rd", "th"];
+export { btn, month, menuOptions, date, dayOptions };

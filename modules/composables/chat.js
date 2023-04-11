@@ -9,7 +9,7 @@ const createOptions = (date = "1989-06-04") => ({
           "model":"gpt-3.5-turbo",
           "messages":[{
             "role":"user",
-            "content":"What happend in ${date}?"
+            "content":"What happend on ${date}? Response in js object which includes three different keys, 'title', 'article', 'brief'. The 'article' must be over 100 words, and the 'brief' is a brief description(word limit: 20) of either the scene or objects that appears in the 'article'."
           }]
         }`,
 });
