@@ -5,7 +5,7 @@ const { $$, app, reCall, delay, position, date } = CLOCK;
 
 const { menuLayer } = MenuUI();
 
-const enterLayer = new $$("div", { class: "layer-enter" }).addTo(app);
+const enterLayer = new $$("div", { class: "layer-enter" });
 
 const enterTitle = new $$("div", { class: "enter-title" })
   .text("The time for action is now.")
@@ -15,11 +15,12 @@ const enterBtn = new $$("div", { class: "enter-btn" })
   .text("Enter")
   .addTo(enterLayer);
 
-reCall((timer) => {
-  enterTitle.class("enter-title-mount");
-  enterBtn.class("enter-btn-mount");
-  clearInterval(timer);
-});
+enterLayer
+  .onMounted(() => {
+    enterTitle.class("enter-title-mount");
+    enterBtn.class("enter-btn-mount");
+  })
+  .mount(app);
 
 let menuPermision = false;
 

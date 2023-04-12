@@ -5,7 +5,7 @@ const depth = -2000;
 
 const backingArr = Array.from({ length: 48 }, (_, idx) => idx);
 
-const backingLayer = new $$("div", { class: "layer-backing" }).addTo(app);
+const backingLayer = new $$("div", { class: "layer-backing" });
 
 const blockArr = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
@@ -38,9 +38,13 @@ backingArr.map((val) => {
     block.addTo(blockGroup[7]);
   }
 });
-delay(() => {
-  backingLayer.class("layer-backing-mount");
-}, 100);
+
+backingLayer
+  .onMounted(() => {
+    backingLayer.class("layer-backing-mount");
+  })
+  .mount(app);
+
 const BackingLayer = () => {
   return { backingLayer, depth };
 };

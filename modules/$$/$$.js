@@ -1,32 +1,63 @@
-import { reCall } from "../composables/logic.js";
+import { delay } from "../composables/logic.js";
 
 export default class $$ {
-  constructor(el = "div", attrs = {}) {
-    const isSelector = el.includes("#") || el.includes(".");
-    isSelector
-      ? (this.element = document.querySelector(el))
-      : (this.element = document.createElement(el));
-    Object.keys(attrs).forEach((key) => {
-      this.element.setAttribute(key, attrs[key]);
-    });
-    this.events = [];
+  constructor(el = "div", attrs = {}, events = []) {
+    this.element;
+    this.child = [];
+    this.vNode = { el, attrs };
+    this.events = events;
+    return this;
   }
   log() {
     console.log(this);
     return this;
   }
-  class(className, add = true) {
-    add
-      ? this.element.classList.add(className)
-      : this.element.classList.remove(className);
+  setupcallback = null;
+  onBeforeMountcallback = null;
+  onMountedcallback = null;
+  setup(callback = () => {}) {
+    this.setupcallback = callback;
+    return this;
+  }
+  onBeforeMount(callback = () => {}) {
+    this.onBeforeMountcallback = callback;
+    return this;
+  }
+  onMounted(callback = () => {}) {
+    this.onMountedcallback = callback;
+    return this;
+  }
+  mount(parent) {
+    const { el, attrs } = this.vNode;
+    const isSelector = el.includes("#") || el.includes(".");
+    isSelector
+      ? (this.element = document.querySelector(el))
+      : (this.element = document.createElement(el));
+    if (attrs)
+      Object.keys(attrs).forEach((key) => {
+        this.element.setAttribute(key, attrs[key]);
+      });
+    if (this.events) {
+      this.events.map((e) => {
+        this.element.addEventListener(e.type, e.callback);
+      });
+    }
+    if (this.setupcallback) this.setupcallback();
+    if (parent instanceof $$) parent.element.appendChild(this.element);
+    if (this.child)
+      this.child.map((el) => {
+        el.mount(this);
+      });
+    if (this.onBeforeMountcallback) this.onBeforeMountcallback();
+    if (this.onMountedcallback) delay(this.onMountedcallback, 10);
     return this;
   }
   add(child) {
     if (child instanceof $$) {
-      this.element.appendChild(child.element);
+      this.child.push(child);
     } else if (child instanceof Array) {
       child.forEach((el) => {
-        this.element.appendChild(el.element);
+        this.child.push(el);
       });
     } else {
       throw new Error("低能嗎?");
@@ -43,6 +74,12 @@ export default class $$ {
   }
   remove(child) {
     child ? this.element.removeChild(child) : this.element.remove();
+    return this;
+  }
+  class(className, add = true) {
+    add
+      ? this.element.classList.add(className)
+      : this.element.classList.remove(className);
     return this;
   }
   attr(attrs = {}) {

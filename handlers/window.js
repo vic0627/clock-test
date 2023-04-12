@@ -85,46 +85,16 @@ const leap = (y) => {
 
 let currentDate = nowDay.num;
 
-const maxDate = (n = 0) => {
-  const isleapYear = leap(year);
+const maxDate = () => {
   let maxVal;
-  switch (month - n) {
-    case 0:
-      maxVal = 31;
-      break;
-    case 1:
-      isleapYear ? (maxVal = 29) : (maxVal = 28);
-      break;
-    case 2:
-      maxVal = 31;
-      break;
-    case 3:
-      maxVal = 30;
-      break;
-    case 4:
-      maxVal = 31;
-      break;
-    case 5:
-      maxVal = 30;
-      break;
-    case 6:
-      maxVal = 31;
-      break;
-    case 7:
-      maxVal = 31;
-      break;
-    case 8:
-      maxVal = 30;
-      break;
-    case 9:
-      maxVal = 31;
-      break;
-    case 10:
-      maxVal = 30;
-      break;
-    case 11:
-      maxVal = 31;
-      break;
+  const isSmallMonth =
+    month === 3 || month === 5 || month === 8 || month === 10;
+  if (month === 1) {
+    leap(year) ? (maxVal = 29) : (maxVal = 28);
+  } else if (isSmallMonth) {
+    maxVal = 30
+  }else{
+    maxVal = 31
   }
   return maxVal;
 };
@@ -183,7 +153,7 @@ window.addEventListener("mousemove", (e) => {
   mouseFollower.style("top", e.y - 5 + "px");
   mouseFollower.style("left", e.x - 5 + "px");
 });
-window.addEventListener("mouseout", (e) => {
+window.addEventListener("mouseout", () => {
   mouseFollower.remove();
 });
 

@@ -1,3 +1,4 @@
+import { testRes } from "./objects.js";
 const createOptions = (date = "1989-06-04") => ({
   method: "POST",
   headers: {
@@ -21,10 +22,31 @@ const createOptions = (date = "1989-06-04") => ({
   //       }`,
 });
 
-const fetchChat = (date = "1989-6-4") => {
-  fetch("https://openai80.p.rapidapi.com/chat/completions", createOptions(date))
-    .then((response) => response.json())
-    .then((response) => console.log(JSON.parse(response.choices[0].message.content)))
-    .catch((err) => console.error(err));
+// const fetchChat = (date = "1989-6-4") => {
+//   fetch("https://openai80.p.rapidapi.com/chat/completions", createOptions(date))
+//     .then((response) => response.json())
+//     .then((response) => console.log(JSON.parse(response.choices[0].message.content)))
+//     .catch((err) => console.error(err));
+// };
+
+const fetchChat = async () => {
+  var formdata = new FormData();
+  formdata.append("ID", "1");
+  formdata.append("DTYPE", "S2");
+
+  var requestOptions = {
+    method: "POST",
+    body: formdata,
+    redirect: "follow",
+  };
+  let res;
+  await fetch(
+    "http://211.72.231.157/Kcg_Wrb_SP/api/v1/get_SP_detail",
+    requestOptions
+  )
+    .then((response) => (res = testRes))
+    .catch((error) => console.log("error", error));
+  return res;
 };
+
 export { fetchChat };
